@@ -1,36 +1,34 @@
 package org.restaurante.cardapio;
 
-public class Lanche {
+public class Lanche implements ItemCardapio{
 
-    private String nome;
+    private String descricao;
     private double preco;
 
 
-    public Lanche(String nome, double preco) {
-        setNome(nome);
-        setPreco(preco);
+    public Lanche(String descricao, double preco) {
         if (preco <= 0){
             throw new IllegalArgumentException("O preço não pode ser negativo");
         }
-        if (nome == null){
+        if (descricao == null){
             throw new IllegalArgumentException("O nome não pode ser nulo");
         }
+        this.descricao = descricao;
+        this.preco = preco;
     }
 
-    public String getNome() {
-        return nome;
+    @Override
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
+    @Override
     public double getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
+    @Override
+    public String toString() {
+        return descricao + "R$" + preco;
     }
-
 }

@@ -1,8 +1,9 @@
 package org.restaurante.app;
 
+import org.restaurante.cardapio.Lanche;
+import org.restaurante.cardapio.LancheFactory;
 import org.restaurante.pedido.GerenciadorPedidos;
 import org.restaurante.pedido.Pedido;
-import org.restaurante.cardapio.Lanche;
 
 public class RestauranteFacade {
 
@@ -12,26 +13,24 @@ public class RestauranteFacade {
         return gerenciador.criarPedido(nomeCliente);
     }
 
-    public void adicionarLanche(Pedido pedido, int opcao) {
+    public Lanche adicionarLanche(Pedido pedido, int opcao) {
 
         Lanche lanche = null;
 
         switch (opcao) {
             case 1:
-                lanche = new Lanche("X-Burger", 16.0);
-                break;
+                return LancheFactory.xBurger();
 
             case 2:
-                lanche = new Lanche("X-Salada", 18.0);
-                break;
+                return LancheFactory.xSalada();
 
             case 3:
-                lanche = new Lanche("X-Bacon", 22.0);
-                break;
-        }
+                return LancheFactory.xBacon();
 
-        if (lanche != null) {
-            pedido.adicionarItem(lanche);
+            default:
+                throw new IllegalArgumentException(
+                        "Opção de lanche inválida."
+                );
         }
     }
 

@@ -1,6 +1,7 @@
 package org.restaurante.pedido;
 import java.util.Scanner;
 
+import org.restaurante.cardapio.ItemCardapio;
 import org.restaurante.cardapio.Lanche;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 public class Pedido {
     private int numero;
     private String nomeCliente;
-    private ArrayList<Lanche> itens;
+    private ArrayList<ItemCardapio> itens;
 
 
     public Pedido(int numero, String nomeCliente) {
@@ -21,7 +22,7 @@ public class Pedido {
         this.itens = new ArrayList<>();
     }
 
-    public void adicionarItem(Lanche lanche) {
+    public void ItemCardapio(Lanche lanche) {
         itens.add(lanche);
     }
 
@@ -31,7 +32,7 @@ public class Pedido {
     public double calcularTotal() {
         double total = 0.0;
 
-        for (Lanche lanche : itens) {
+        for (ItemCardapio lanche : itens) {
             total += lanche.getPreco();
         }
 
