@@ -2,24 +2,89 @@ package org.restaurante.cardapio;
 
 public class Lanche implements ItemCardapio{
 
-    private String descricao;
+    private String nome;
     private double preco;
+    private boolean queijo = true;
+    private boolean alface = true;
+    private boolean tomate = true;
+    private boolean cebola = true;
 
 
-    public Lanche(String descricao, double preco) {
-        if (preco <= 0){
+    public Lanche(String nome, double preco) {
+        if (preco < 0){
             throw new IllegalArgumentException("O preço não pode ser negativo");
         }
-        if (descricao == null){
+        if (nome == null || nome.trim().isEmpty()){
             throw new IllegalArgumentException("O nome não pode ser nulo");
         }
-        this.descricao = descricao;
+        setNome(nome);
+        setPreco(preco);
+    }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) throw new IllegalArgumentException("Nome inválido");
+        this.nome = nome;
+    }
+    public void setPreco(double preco) {
+        if (preco < 0) throw new IllegalArgumentException("Preço negativo");
         this.preco = preco;
+    }
+
+    public boolean isQueijo() {
+        return queijo;
+    }
+
+    public void setQueijo(boolean queijo) {
+        this.queijo = queijo;
+    }
+
+    public boolean isAlface() {
+        return alface;
+    }
+
+    public void setAlface(boolean alface) {
+        this.alface = alface;
+    }
+
+    public boolean isTomate() {
+        return tomate;
+    }
+
+    public void setTomate(boolean tomate) {
+        this.tomate = tomate;
+    }
+
+    public boolean isCebola() {
+        return cebola;
+    }
+
+    public void setCebola(boolean cebola) {
+        this.cebola = cebola;
     }
 
     @Override
     public String getDescricao() {
-        return descricao;
+
+        String desc = nome;
+
+        if (!queijo) {
+            desc += " sem queijo";
+        }
+
+        if (!alface) {
+            desc += " sem alface";
+        }
+
+        if (!tomate) {
+            desc += " sem tomate";
+        }
+
+        if (!cebola) {
+            desc += " sem cebola";
+        }
+
+        return desc;
     }
 
     @Override
@@ -29,6 +94,6 @@ public class Lanche implements ItemCardapio{
 
     @Override
     public String toString() {
-        return descricao + "R$" + preco;
+        return nome + "R$" + preco;
     }
 }
