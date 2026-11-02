@@ -5,6 +5,8 @@ import org.restaurante.cardapio.LancheFactory;
 import org.restaurante.pedido.GerenciadorPedidos;
 import org.restaurante.pedido.Pedido;
 
+import java.util.HashSet;
+
 public class RestauranteFacade {
 
     private GerenciadorPedidos gerenciador = new GerenciadorPedidos();
@@ -15,23 +17,35 @@ public class RestauranteFacade {
 
     public Lanche adicionarLanche(Pedido pedido, int opcao) {
 
-        Lanche lanche = null;
+        Lanche lanche;
 
         switch (opcao) {
             case 1:
-                return LancheFactory.xBurger();
+                lanche = LancheFactory.xBurger();
+                break;
 
             case 2:
-                return LancheFactory.xSalada();
+                lanche = LancheFactory.xSalada();
+                break;
 
             case 3:
-                return LancheFactory.xBacon();
+                lanche = LancheFactory.xBacon();
+                break;
 
             default:
                 throw new IllegalArgumentException(
                         "Opção de lanche inválida."
                 );
         }
+        return lanche;
+    }
+
+    public void adicionarItem(Pedido pedido, org.restaurante.cardapio.ItemCardapio item) {
+        pedido.adicionarItem(item);
+    }
+
+    public void removerItem(Pedido pedido, int indice) {
+        pedido.removerItem(indice);
     }
 
     public double calcularTotalDoDia() {
@@ -40,5 +54,16 @@ public class RestauranteFacade {
 
     public Iterable<Pedido> listarPedidos() {
         return gerenciador.getPedidos();
+    }
+
+    public Pedido buscarPedido(int numero){
+        return gerenciador.buscarPedido(numero);
+    }
+
+    public Pedido cancelarPedido(int numero){
+        return gerenciador.cancelarPedido(numero);
+    }
+    public HashSet<String> obterCombinacoes() {
+        return gerenciador.obterCombinacoes();
     }
 }

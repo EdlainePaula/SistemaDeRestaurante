@@ -10,7 +10,7 @@ public class Cheddar implements ItemCardapio {
 
     @Override
     public String getDescricao() {
-        return itemCardapio.getDescricao() + " + Cheddar";
+        return itemCardapio.getDescricao() + " + cheddar";
     }
 
     @Override

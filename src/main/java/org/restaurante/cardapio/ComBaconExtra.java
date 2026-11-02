@@ -11,7 +11,7 @@ public class ComBaconExtra implements ItemCardapio {
 
     @Override
     public String getDescricao() {
-        return itemCardapio.getDescricao() + " + Bacon Extra";
+        return itemCardapio.getDescricao() + " + bacon extra";
     }
 
     @Override
